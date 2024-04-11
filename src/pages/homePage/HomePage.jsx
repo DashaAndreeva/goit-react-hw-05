@@ -18,6 +18,7 @@ export default function HomePage() {
             },
           }
         );
+        console.log(res);
         setMovies(res.data.results);
       } catch (error) {
         alert(error);
@@ -31,11 +32,7 @@ export default function HomePage() {
   return (
     <div>
       <h1>Tranding today</h1>
-      {movies.length > 0 ? (
-        <MovieList movies={movies} />
-      ) : (
-        <p>Завантаження...</p>
-      )}
+      {movies.length > 0 ? <MovieList movies={movies} /> : <p>Loading...</p>}
     </div>
   );
 }
