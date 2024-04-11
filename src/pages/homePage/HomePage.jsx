@@ -18,7 +18,6 @@ export default function HomePage() {
             },
           }
         );
-        console.log(res);
         setMovies(res.data.results);
       } catch (error) {
         alert(error);

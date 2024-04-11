@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 
 export default function MovieDetailsPage() {
@@ -43,6 +43,10 @@ export default function MovieDetailsPage() {
           {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
         </p>
         <p>Release Date: {movie.release_date}</p>
+      </div>
+      <div>
+        <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+        <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
       </div>
     </>
   );
