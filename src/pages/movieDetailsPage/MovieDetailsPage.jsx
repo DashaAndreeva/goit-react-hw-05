@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 
 export default function MovieDetailsPage() {
@@ -48,6 +48,7 @@ export default function MovieDetailsPage() {
         <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
         <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
       </div>
+      <Outlet />
     </>
   );
 }

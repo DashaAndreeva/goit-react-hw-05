@@ -20,8 +20,6 @@ export default function MovieCast() {
             },
           }
         );
-        console.log(res);
-
         setCast(res.data.cast);
       } catch (error) {
         console.log(error);
