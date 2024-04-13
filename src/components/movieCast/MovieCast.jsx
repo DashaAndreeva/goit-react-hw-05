@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import img from "../../img/no-photo.png";
+import css from "./MovieCast.module.css";
 
 export default function MovieCast() {
   const [cast, setCast] = useState([]);
@@ -36,18 +38,18 @@ export default function MovieCast() {
 
   return (
     <div>
-      <h2>Casts</h2>
-      <ul>
+      <h2 className={css["casts-title"]}>Casts</h2>
+      <ul className={css["cast-list"]}>
         {cast.map((actor, idx) => (
           <li key={idx}>
-            <div>
+            <div className={css["cast-info"]}>
               {actor.profile_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
                   alt={actor.name}
                 />
               ) : (
-                <span>No photo</span>
+                <img src={img} className={css["no-photo-img"]} />
               )}
               {actor.name}
             </div>

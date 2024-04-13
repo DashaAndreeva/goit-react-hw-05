@@ -1,7 +1,9 @@
 import MovieList from "../../components/movieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Loader from "../../components/loader/Loader";
 import axios from "axios";
+import css from "./MoviesPage.module.css";
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -50,16 +52,19 @@ export default function MoviesPage() {
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className={css["form"]}>
         <input
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
           placeholder="Search movies by title"
+          className={css["input"]}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={css["btn-submit"]}>
+          Search
+        </button>
       </form>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {error && <p>Error: {error}</p>}
       {!loading && !error && <MovieList movies={movies} />}
     </div>

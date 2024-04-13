@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MovieList from "../../components/movieList/MovieList";
+import Loader from "../../components/loader/Loader";
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -29,9 +31,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
-      <h1>Tranding today</h1>
-      {movies.length > 0 ? <MovieList movies={movies} /> : <p>Loading...</p>}
+    <div className={css["container"]}>
+      <h1 className={css['home-title']}>Tranding today</h1>
+      {movies.length > 0 ? <MovieList movies={movies} /> : <Loader />}
     </div>
   );
 }

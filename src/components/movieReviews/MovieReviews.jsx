@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import img from "../../img/no-reviews.png";
+import css from "./MovieReviews.module.css";
 
 export default function MovieReviews() {
   const [reviews, setReviews] = useState([]);
@@ -34,18 +36,21 @@ export default function MovieReviews() {
 
   return (
     <div>
-      <h2>Reviews</h2>
+      <h2 className={css["reviews-title"]}>Reviews</h2>
       {reviews.length > 0 ? (
-        <ul>
+        <ul className={css["review-list"]}>
           {reviews.map((review, idx) => (
-            <li key={idx}>
-              <p>{review.author}</p>
+            <li key={idx} className={css["review-comment"]}>
+              <p className={css["author"]}>{review.author}</p>
               <p>{review.content}</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No reviews</p>
+        <p className={css["no-reviews"]}>
+          No reviews yet
+          <img src={img} className={css["img-rew"]} />
+        </p>
       )}
     </div>
   );

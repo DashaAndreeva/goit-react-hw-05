@@ -7,7 +7,8 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import styles from "./MovieDetailsPage.module.css";
+import Loader from "../../components/loader/Loader";
+import css from "./MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
@@ -44,41 +45,51 @@ export default function MovieDetailsPage() {
   }, [location]);
 
   if (!movie || !movie.title) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
-    <div className={styles.container}>
+    <div className={css["container"]}>
       <Link
         to={location.state?.from || "/movies"}
-        className={styles.backLink}
         ref={backLinkRef}
+        className={css["btn-back"]}
       >
         Back
       </Link>
-      <div className={styles.fullInfo}>
+      <div className={css["container-info"]}>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-          className={styles.image}
           alt={movie.title}
+          className={css["img-movie"]}
         />
-        <div className={styles.info}>
-          <h2 className={styles.title}>{movie.title}</h2>
-          <p>{movie.overview}</p>
+        <div className={css["container-details"]}>
+          <h2>{movie.title}</h2>
+          <div className={css["overwiew-container"]}>
+            <p className={css["overview-title"]}>Overview</p>
+            <p>{movie.overview}</p>
+          </div>
           <p>
-            Average rating:{" "}
+            <span className={css["rating-title"]}>Average rating:</span>{" "}
             {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
           </p>
-          <p>Release Date: {movie.release_date}</p>
+
+          <p>
+            <span className={css["release-title"]}>Release Date:</span>{" "}
+            {movie.release_date}
+          </p>
         </div>
       </div>
-      <div className={styles.links}>
-        <NavLink to={`/movies/${movieId}/cast`} className={styles.castLink}>
+      <div className={css["btn-links"]}>
+        <NavLink
+          to={`/movies/${movieId}/cast`}
+          className={css["btn-links-item"]}
+        >
           Cast
         </NavLink>
         <NavLink
           to={`/movies/${movieId}/reviews`}
-          className={styles.reviewsLink}
+          className={css["btn-links-item"]}
         >
           Reviews
         </NavLink>
